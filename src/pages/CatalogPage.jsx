@@ -9,6 +9,7 @@ import {
   incrementPage,
 } from "../features/campers/campersSlice";
 import styles from "./CatalogPage.module.css";
+import SkeletonCard from "../components/SkeletonCard";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -53,11 +54,10 @@ const CatalogPage = () => {
         )}
 
         <div className={styles.catalog}>
-          {displayedItems.length > 0 ? (
-            displayedItems.map((c) => <CamperCard key={c.id} camper={c} />)
-          ) : (
-            <p>No campers found.</p>
-          )}
+          {status === "loading" && items.length === 0
+            ? // поки вперше вантажимо — рендеримо скелетони замість даних
+              Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)
+            : displayedItems.map((c) => <CamperCard key={c.id} camper={c} />)}
         </div>
       </div>
 
