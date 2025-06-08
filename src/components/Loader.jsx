@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./Loader.module.css";
 
-const Loader = () => (
-  <div className={styles.overlay}>
+const Loader = ({ small = false }) => (
+  <div className={small ? styles.inlineOverlay : styles.overlay}>
     <div className={styles.spinner}></div>
   </div>
 );
