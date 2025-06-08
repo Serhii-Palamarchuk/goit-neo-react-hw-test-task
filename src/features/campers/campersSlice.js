@@ -4,7 +4,7 @@ import api from "../../services/api";
 // Список кемперів (повертає або масив, або { items: [...] })
 export const fetchCampers = createAsyncThunk(
   "campers/fetchAll",
-  async ({ page = 1, limit = 10, filters = {} } = {}, { rejectWithValue }) => {
+  async ({ page = 1, limit = 12, filters = {} } = {}, { rejectWithValue }) => {
     try {
       const response = await api.get("/campers", {
         params: { page, limit, ...filters },
@@ -45,7 +45,7 @@ const campersSlice = createSlice({
     detailError: null,
 
     page: 1,
-    limit: 10,
+    limit: 12,
     hasMore: true,
   },
   reducers: {
