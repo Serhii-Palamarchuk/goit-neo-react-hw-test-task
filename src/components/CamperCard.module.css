@@ -1,3 +1,5 @@
+/* src/components/CamperCard.module.css */
+
 .card {
   display: flex;
   flex-direction: column;
@@ -19,7 +21,6 @@
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
-  /* займає весь простір над кнопкою */
   flex: 1;
   gap: 0.25rem;
 }
@@ -28,6 +29,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/* Зірка-фаворитка */
+.favInline {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  /* Робимо іконку побільше */
+  font-size: 1.8rem;
+  /* За замовчуванням – сіра */
+  color: #ccc;
+  transition: color var(--transition), transform 0.2s;
+}
+.favInline:hover {
+  /* трохи підскакує при наведенні */
+  transform: scale(1.1);
+}
+.favInlineActive {
+  /* якщо обрано – золота */
+  color: gold;
 }
 
 .title {
@@ -41,7 +62,6 @@
 }
 
 .actions {
-  /* прижимаємо кнопку до низу картки */
   margin-top: auto;
   padding: 0.5rem;
 }
@@ -56,7 +76,6 @@
   cursor: pointer;
   transition: filter var(--transition);
 }
-
 .actions button:hover {
   filter: brightness(85%);
 }
