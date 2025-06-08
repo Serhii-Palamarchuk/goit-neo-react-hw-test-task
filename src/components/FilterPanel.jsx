@@ -1,3 +1,5 @@
+// src/components/FilterPanel.jsx
+
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -19,18 +21,23 @@ const FilterPanel = () => {
 
   return (
     <div className={styles.panel}>
+      {/* Location */}
       <div className={styles.group}>
-        <label>Location:</label>
+        <label htmlFor="loc">Location:</label>
         <input
+          id="loc"
           type="text"
+          placeholder="Enter city"
           value={location}
           onChange={(e) => dispatch(setLocation(e.target.value))}
-          placeholder="Enter city"
         />
       </div>
+
+      {/* Body Type */}
       <div className={styles.group}>
-        <label>Body type:</label>
+        <label htmlFor="body">Body type:</label>
         <select
+          id="body"
           value={bodyType}
           onChange={(e) => dispatch(setBodyType(e.target.value))}
         >
@@ -42,20 +49,28 @@ const FilterPanel = () => {
           ))}
         </select>
       </div>
-      <div className={styles.group}>
-        <label>Features:</label>
+
+      {/* Features */}
+      <div className={styles.features}>
         {ALL_FEATURES.map((f) => (
-          <label key={f} className={styles.feature}>
+          <label key={f}>
             <input
               type="checkbox"
               checked={features.includes(f)}
               onChange={() => dispatch(toggleFeature(f))}
-            />{" "}
+            />
             {f}
           </label>
         ))}
       </div>
-      <button onClick={() => dispatch(clearFilters())}>Clear</button>
+
+      {/* Clear */}
+      <button
+        className={styles.clearBtn}
+        onClick={() => dispatch(clearFilters())}
+      >
+        Clear
+      </button>
     </div>
   );
 };

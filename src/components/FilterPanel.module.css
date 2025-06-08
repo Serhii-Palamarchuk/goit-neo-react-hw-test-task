@@ -1,52 +1,85 @@
 .panel {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  /* дві колонки: основні фільтри + перелік фіч */
+  grid-template-columns: 1fr 2fr auto;
   gap: var(--gap);
   padding: var(--gap);
   background: var(--clr-card);
   border-radius: var(--radius);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  align-items: end;
   margin-bottom: var(--gap);
 }
 
+/* Групи з label+control */
 .group {
   display: flex;
   flex-direction: column;
 }
 
+/* Label над інпутом */
 .group label {
-  margin-bottom: 0.25rem;
   font-weight: 500;
+  margin-bottom: 0.25rem;
+  color: var(--clr-text);
 }
 
+/* Усі контролери мають однаковий вигляд */
 .group input,
 .group select {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: var(--radius);
+  background: #fff;
+  font-size: 1rem;
+  transition: border-color var(--transition);
+}
+.group input:focus,
+.group select:focus {
+  border-color: var(--clr-primary);
+  outline: none;
 }
 
-.feature {
-  margin-right: 0.5rem;
-  display: inline-flex;
+/* Список фіч у дві колонки */
+.features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.features label {
+  display: flex;
   align-items: center;
+  font-size: 0.95rem;
+  color: var(--clr-text);
+}
+.features input {
+  margin-right: 0.5rem;
 }
 
-.feature input {
-  margin-right: 0.25rem;
-}
-
-button.clear {
-  margin-left: auto;
+/* Кнопка «Clear» */
+.clearBtn {
+  align-self: start;
+  padding: 0.5rem 1rem;
   background: var(--clr-error);
   color: #fff;
-  padding: 0.5rem 1rem;
   border: none;
   border-radius: var(--radius);
+  font-size: 0.95rem;
   cursor: pointer;
   transition: opacity var(--transition);
 }
+.clearBtn:hover {
+  opacity: 0.85;
+}
 
-button.clear:hover {
-  opacity: 0.8;
+@media (max-width: 600px) {
+  .panel {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .clearBtn {
+    margin-top: var(--gap);
+    align-self: stretch;
+  }
 }
