@@ -1,6 +1,9 @@
 .panel {
+  /* щоб панель не виходила за wrapper */
+  width: 100%;
+  box-sizing: border-box;
+
   display: grid;
-  /* чотири автоколонки: поле локації | селект | фічі | кнопка */
   grid-template-columns: 1fr auto auto auto;
   gap: var(--gap);
   padding: var(--gap);
