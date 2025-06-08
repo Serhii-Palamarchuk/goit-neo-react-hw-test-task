@@ -62,3 +62,15 @@
 .review:last-child {
   border-bottom: none;
 }
+
+.breadcrumbs {
+  margin-bottom: 1rem;
+}
+.breadcrumbs a {
+  color: var(--clr-primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}

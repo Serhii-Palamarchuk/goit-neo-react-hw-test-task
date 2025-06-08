@@ -1,0 +1,21 @@
+.nav {
+  background: var(--clr-card);
+  padding: 0.5rem var(--gap);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+.list {
+  display: flex;
+  gap: var(--gap);
+}
+.list a {
+  color: var(--clr-text);
+  font-weight: 500;
+  transition: color var(--transition);
+}
+.list a:hover {
+  color: var(--clr-primary);
+}
+.active {
+  color: var(--clr-primary);
+  border-bottom: 2px solid var(--clr-primary);
+}

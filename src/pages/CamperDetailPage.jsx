@@ -1,5 +1,6 @@
+// src/pages/CamperDetailPage.jsx
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCamperById } from "../features/campers/campersSlice";
 import BookingForm from "../components/BookingForm";
@@ -8,9 +9,7 @@ import styles from "./CamperDetailPage.module.css";
 const CamperDetailPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { detail, detailStatus, detailError } = useSelector(
-    (state) => state.campers
-  );
+  const { detail, detailStatus, detailError } = useSelector((s) => s.campers);
 
   useEffect(() => {
     dispatch(fetchCamperById(id));
@@ -23,7 +22,6 @@ const CamperDetailPage = () => {
   const {
     name,
     description,
-    price,
     gallery = [],
     reviews = [],
     transmission,
@@ -43,10 +41,15 @@ const CamperDetailPage = () => {
     height,
     tank,
     consumption,
+    price,
   } = detail;
 
   return (
     <div className={styles.page}>
+      <div className={styles.breadcrumbs}>
+        <NavLink to="/catalog">&larr; Back to catalog</NavLink>
+      </div>
+
       <h2 className={styles.title}>{name}</h2>
       {description && <p className={styles.description}>{description}</p>}
 
@@ -77,6 +80,13 @@ const CamperDetailPage = () => {
         {tank && <li>Tank: {tank}</li>}
         {consumption && <li>Consumption: {consumption}</li>}
       </ul>
+
+      <p className={styles.price}>
+        Price:{" "}
+        {new Intl.NumberFormat("en-IN", {
+          minimumFractionDigits: 2,
+        }).format(price)}
+      </p>
 
       <div className={styles.bottom}>
         {/* Відгуки */}
