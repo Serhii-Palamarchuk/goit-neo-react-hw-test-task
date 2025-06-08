@@ -1,5 +1,3 @@
-/* src/components/CamperCard.module.css */
-
 .card {
   display: flex;
   flex-direction: column;
@@ -29,31 +27,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-/* Зірка-фаворитка */
-.favInline {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  /* Робимо іконку побільше */
-  font-size: 1.8rem;
-  /* За замовчуванням – сіра */
-  color: #ccc;
-  transition: color var(--transition), transform 0.2s;
-}
-.favInline:hover {
-  /* трохи підскакує при наведенні */
-  transform: scale(1.1);
-}
-.favInlineActive {
-  /* якщо обрано – золота */
-  color: gold;
+  position: relative;
 }
 
 .title {
   font-size: 1.05rem;
   margin: 0;
+}
+
+.favButton {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .price {
@@ -66,16 +54,18 @@
   padding: 0.5rem;
 }
 
-.actions button {
+.showButton {
+  display: block;
   width: 100%;
+  text-align: center;
   padding: 0.4rem;
   background: var(--clr-primary);
   color: #fff;
-  border: none;
+  text-decoration: none;
   border-radius: var(--radius);
-  cursor: pointer;
   transition: filter var(--transition);
 }
-.actions button:hover {
+
+.showButton:hover {
   filter: brightness(85%);
 }

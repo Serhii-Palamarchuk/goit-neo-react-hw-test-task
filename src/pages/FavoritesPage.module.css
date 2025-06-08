@@ -1,11 +1,16 @@
-.page {
+/* src/pages/FavoritesPage.module.css */
+.wrapper {
   max-width: 1200px;
-  margin: var(--gap) auto;
-  padding: 0 var(--gap);
+  margin: 0 auto;
+  padding: 1rem;
 }
-.grid {
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+.catalog {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
 }

@@ -1,23 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// Завантажуємо початковий список з localStorage (якщо є)
-const initialState = JSON.parse(localStorage.getItem("favorites")) || [];
+// Завантажуємо з localStorage або починаємо з пустого масиву
+const persisted = JSON.parse(localStorage.getItem("favoriteIds") || "[]");
 
 const favoritesSlice = createSlice({
   name: "favorites",
-  initialState, // просто масив id улюблених
+  initialState: persisted,
   reducers: {
     toggleFavorite(state, action) {
       const id = action.payload;
-      let next;
-      if (state.includes(id)) {
-        next = state.filter((item) => item !== id);
+      const idx = state.indexOf(id);
+      if (idx >= 0) {
+        // якщо вже є — прибираємо
+        state.splice(idx, 1);
       } else {
-        next = [...state, id];
+        // якщо нема — додаємо
+        state.push(id);
       }
-      // зберігаємо в localStorage
-      localStorage.setItem("favorites", JSON.stringify(next));
-      return next;
+      // пишемо назад у localStorage
+      localStorage.setItem("favoriteIds", JSON.stringify(state));
     },
   },
 });

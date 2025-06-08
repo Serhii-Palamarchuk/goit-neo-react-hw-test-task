@@ -1,34 +1,32 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import api from "../../services/api";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
-// Список кемперів (повертає або масив, або { items: [...] })
+const API_URL = "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers";
+
+// Завантаження списку кемперів
 export const fetchCampers = createAsyncThunk(
-  "campers/fetchAll",
-  async ({ page = 1, limit = 12, filters = {} } = {}, { rejectWithValue }) => {
+  "campers/fetchCampers",
+  async ({ page, limit, filters }, { rejectWithValue }) => {
     try {
-      const response = await api.get("/campers", {
+      const { data } = await axios.get(API_URL, {
         params: { page, limit, ...filters },
       });
-      return response.data;
+      return data; // { total, items: [...] }
     } catch (err) {
-      // Якщо 404 — просто повертаємо порожній масив
-      if (err.response?.status === 404) {
-        return [];
-      }
-      return rejectWithValue(err.response?.data || err.message);
+      return rejectWithValue(err.message);
     }
   }
 );
 
-// Деталі одного кемпера
+// Завантаження деталей одного кемпера
 export const fetchCamperById = createAsyncThunk(
-  "campers/fetchById",
+  "campers/fetchCamperById",
   async (id, { rejectWithValue }) => {
     try {
-      const response = await api.get(`/campers/${id}`);
-      return response.data;
+      const { data } = await axios.get(`${API_URL}/${id}`);
+      return data;
     } catch (err) {
-      return rejectWithValue(err.response?.data || err.message);
+      return rejectWithValue(err.message);
     }
   }
 );
@@ -37,55 +35,55 @@ const campersSlice = createSlice({
   name: "campers",
   initialState: {
     items: [],
-    status: "idle",
-    error: null,
-
     detail: null,
-    detailStatus: "idle",
-    detailError: null,
-
     page: 1,
-    limit: 12,
+    limit: 10,
     hasMore: true,
+    status: "idle",
+    detailStatus: "idle",
+    error: null,
   },
   reducers: {
     resetCampers(state) {
       state.items = [];
-      state.status = "idle";
-      state.error = null;
       state.page = 1;
       state.hasMore = true;
+      state.status = "idle";
+      state.error = null;
     },
     incrementPage(state) {
       state.page += 1;
     },
+    // Ось він, екшен для перемикання фаворита
+    toggleFavorite(state, action) {
+      const id = action.payload;
+      const camper = state.items.find((c) => c.id === id);
+      if (camper) camper.isFavorite = !camper.isFavorite;
+    },
   },
   extraReducers: (builder) => {
     builder
-      // ===== список =====
       .addCase(fetchCampers.pending, (state) => {
         state.status = "loading";
+        state.error = null;
       })
       .addCase(fetchCampers.fulfilled, (state, { payload }) => {
+        const { items: newItems } = payload;
+        const normalized = newItems.map((c) => ({
+          ...c,
+          isFavorite: c.isFavorite ?? false,
+        }));
+        state.items = [...state.items, ...normalized];
+        state.hasMore = normalized.length === state.limit;
         state.status = "succeeded";
-        // payload може бути [] або об’єкт з полем items
-        const data = Array.isArray(payload)
-          ? payload
-          : Array.isArray(payload.items)
-          ? payload.items
-          : [];
-        if (data.length < state.limit) state.hasMore = false;
-        // якщо це перша сторінка — заміняємо, інакше — додаємо
-        state.items = state.page === 1 ? data : [...state.items, ...data];
       })
       .addCase(fetchCampers.rejected, (state, { payload }) => {
         state.status = "failed";
         state.error = payload;
       })
-
-      // ===== деталі =====
       .addCase(fetchCamperById.pending, (state) => {
         state.detailStatus = "loading";
+        state.error = null;
       })
       .addCase(fetchCamperById.fulfilled, (state, { payload }) => {
         state.detailStatus = "succeeded";
@@ -93,10 +91,12 @@ const campersSlice = createSlice({
       })
       .addCase(fetchCamperById.rejected, (state, { payload }) => {
         state.detailStatus = "failed";
-        state.detailError = payload;
+        state.error = payload;
       });
   },
 });
 
-export const { resetCampers, incrementPage } = campersSlice.actions;
+export const { resetCampers, incrementPage, toggleFavorite } =
+  campersSlice.actions;
+
 export default campersSlice.reducer;
