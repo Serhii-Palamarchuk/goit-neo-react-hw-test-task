@@ -1,5 +1,4 @@
 .wrapper {
-  /* трохи менше відступів по краях */
   padding: 0.5rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -20,12 +19,15 @@
   justify-content: center;
 }
 
+/* 
+  Мінімум 260px на колонку, максимум — вільний простір (1fr),
+  відступи: по вертикалі 0.75rem, по горизонталі 0.5rem 
+*/
 .catalog {
   display: grid;
-  /* дві числові величини: рядковий gap — 0.5rem, стовпчиковий — 1rem */
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 0.5rem 1rem;
-  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  row-gap: 0.75rem;
+  column-gap: 0.5rem;
 }
 
 .loadMore {

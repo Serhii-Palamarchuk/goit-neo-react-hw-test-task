@@ -1,15 +1,11 @@
-/* src/components/CamperCard.module.css */
-
 .card {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 260px;
   background: var(--clr-card);
   border: 1px solid #ddd;
   border-radius: var(--radius);
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  /* прибрали min-height */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -20,10 +16,12 @@
 }
 
 .info {
-  padding: 0.75rem; /* трохи менше, ніж var(--gap) */
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem; /* щільніше ставимо заголовок, ціну, кнопку */
+  /* займає весь простір над кнопкою */
+  flex: 1;
+  gap: 0.25rem;
 }
 
 .header {
@@ -33,21 +31,8 @@
 }
 
 .title {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   margin: 0;
-}
-
-.favInline {
-  background: transparent;
-  border: none;
-  font-size: 1.4rem;
-  cursor: pointer;
-  color: #aaa;
-  transition: color var(--transition);
-}
-
-.favInlineActive {
-  color: gold;
 }
 
 .price {
@@ -56,12 +41,14 @@
 }
 
 .actions {
-  margin-top: 0.5rem; /* кнопка ближче до ціни */
+  /* прижимаємо кнопку до низу картки */
+  margin-top: auto;
+  padding: 0.5rem;
 }
 
 .actions button {
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.4rem;
   background: var(--clr-primary);
   color: #fff;
   border: none;
