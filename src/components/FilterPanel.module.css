@@ -1,0 +1,17 @@
+.panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+.group {
+  display: flex;
+  flex-direction: column;
+}
+.feature {
+  margin-right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+}

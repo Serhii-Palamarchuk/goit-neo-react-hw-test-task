@@ -1,0 +1,94 @@
+.card {
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  /* обмежуємо максимальну ширину картки */
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* обгортка зображення */
+.image {
+  width: 100%;
+  height: 160px; /* фіксована висота */
+  object-fit: cover;
+}
+
+/* інфоконтейнер під картинкою */
+.info {
+  padding: 0.75rem;
+  flex: 1; /* щоб кнопка Load More тягнулася вниз */
+  display: flex;
+  flex-direction: column;
+}
+
+/* заголовок + зірка в рядку */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.title {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+/* кнопка-зірка поруч із назвою */
+.favInline {
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #aaa;
+}
+.favInlineActive {
+  color: gold;
+}
+
+/* ціна */
+.price {
+  margin: 0.5rem 0;
+  font-weight: bold;
+}
+
+/* дії внизу */
+.actions {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-start;
+}
+.actions button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.actions button:hover {
+  background: #0056b3;
+}
+
+/* кнопка Load More */
+.loadMore {
+  margin: 2rem auto;
+  padding: 0.75rem 1.5rem;
+  display: block;
+  border: none;
+  background: #28a745;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.loadMore:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
