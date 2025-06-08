@@ -1,0 +1,39 @@
+.form {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.form h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.form input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.dates {
+  display: flex;
+  gap: 0.5rem;
+}
+.dates label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+}
+.form button {
+  padding: 0.6rem;
+  border: none;
+  background: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.form button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
