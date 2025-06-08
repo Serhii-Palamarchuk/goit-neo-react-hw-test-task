@@ -51,18 +51,14 @@ const CatalogPage = () => {
   return (
     <div className={styles.wrapper}>
       <FilterPanel />
-
       <div className={styles.catalog}>
-        {displayedItems.length > 0 ? (
-          displayedItems.map((camper) => (
-            <CamperCard key={camper.id} camper={camper} />
-          ))
+        {displayedItems.length ? (
+          displayedItems.map((c) => <CamperCard key={c.id} camper={c} />)
         ) : (
           <p>No campers found</p>
         )}
       </div>
-
-      {hasMore && status === "succeeded" && (
+      {hasMore && (
         <button
           className={styles.loadMore}
           onClick={loadMore}

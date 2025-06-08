@@ -20,14 +20,16 @@ const CamperCard = ({ camper }) => {
 
   return (
     <div className={styles.card}>
-      <img src={imageUrl} alt={camper.name} className={styles.image} />
-
+      <img className={styles.image} src={imageUrl} alt={camper.name} />
       <div className={styles.info}>
         <div className={styles.header}>
           <h3 className={styles.title}>{camper.name}</h3>
           <button
-            type="button"
-            className={favClass}
+            className={
+              isFav
+                ? `${styles.favInline} ${styles.favInlineActive}`
+                : styles.favInline
+            }
             onClick={onToggle}
             aria-label={isFav ? "Remove from favorites" : "Add to favorites"}
           >
