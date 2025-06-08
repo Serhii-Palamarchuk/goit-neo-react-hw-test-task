@@ -1,7 +1,7 @@
 .panel {
   display: grid;
-  /* дві колонки: основні фільтри + перелік фіч */
-  grid-template-columns: 1fr 2fr auto;
+  /* чотири автоколонки: поле локації | селект | фічі | кнопка */
+  grid-template-columns: 1fr auto auto auto;
   gap: var(--gap);
   padding: var(--gap);
   background: var(--clr-card);
@@ -11,21 +11,16 @@
   margin-bottom: var(--gap);
 }
 
-/* Групи з label+control */
 .group {
   display: flex;
   flex-direction: column;
 }
-
-/* Label над інпутом */
 .group label {
   font-weight: 500;
   margin-bottom: 0.25rem;
   color: var(--clr-text);
 }
-
-/* Усі контролери мають однаковий вигляд */
-.group input,
+.group input[type="text"],
 .group select {
   padding: 0.5rem;
   border: 1px solid #ccc;
@@ -34,19 +29,18 @@
   font-size: 1rem;
   transition: border-color var(--transition);
 }
-.group input:focus,
+.group input[type="text"]:focus,
 .group select:focus {
   border-color: var(--clr-primary);
   outline: none;
 }
 
-/* Список фіч у дві колонки */
+/* Фічі — в один рядок */
 .features {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
 }
-
 .features label {
   display: flex;
   align-items: center;
@@ -54,12 +48,11 @@
   color: var(--clr-text);
 }
 .features input {
-  margin-right: 0.5rem;
+  margin-right: 0.25rem;
 }
 
-/* Кнопка «Clear» */
+/* Кнопка “Clear” прямо поруч */
 .clearBtn {
-  align-self: start;
   padding: 0.5rem 1rem;
   background: var(--clr-error);
   color: #fff;
@@ -81,5 +74,9 @@
   .clearBtn {
     margin-top: var(--gap);
     align-self: stretch;
+  }
+  .features {
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
   }
 }
