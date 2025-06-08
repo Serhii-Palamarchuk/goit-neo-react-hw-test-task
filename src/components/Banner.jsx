@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import styles from "./Banner.module.css";
 
 const Banner = () => {
-  console.log("🔔 Banner rendered");
   return (
     <section className={styles.banner}>
       <div className={styles.content}>

@@ -2,10 +2,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Loader from "./components/Loader";
 import HomePage from "./pages/HomePage";
 import CatalogPage from "./pages/CatalogPage";
 import CamperDetailPage from "./pages/CamperDetailPage";
-import Loader from "./components/Loader";
 
 function App() {
   const loading = useSelector(
