@@ -1,13 +1,30 @@
 .wrapper {
-  padding: 1rem;
-  max-width: 1200px; /* обмежуємо ширину контенту */
-  margin: 0 auto; /* центруємо по горизонталі */
+  padding: var(--gap);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .catalog {
   display: grid;
-  /* автоматично створюємо стовпці мінімум по 300px */
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
-  justify-items: center; /* центруємо картки в клітинках */
+  justify-items: center;
+}
+
+.loadMore {
+  margin: 2rem auto;
+  padding: 0.75rem 1.5rem;
+  display: block;
+  background: var(--clr-secondary);
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+
+.loadMore:disabled {
+  opacity: 0.6;
+  cursor: default;
 }

@@ -1,17 +1,52 @@
 .panel {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1rem;
-  background: #f9f9f9;
-  border-radius: 8px;
+  gap: var(--gap);
+  padding: var(--gap);
+  background: var(--clr-card);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: var(--gap);
 }
+
 .group {
   display: flex;
   flex-direction: column;
 }
+
+.group label {
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.group input,
+.group select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+}
+
 .feature {
   margin-right: 0.5rem;
   display: inline-flex;
   align-items: center;
+}
+
+.feature input {
+  margin-right: 0.25rem;
+}
+
+button.clear {
+  margin-left: auto;
+  background: var(--clr-error);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+
+button.clear:hover {
+  opacity: 0.8;
 }
