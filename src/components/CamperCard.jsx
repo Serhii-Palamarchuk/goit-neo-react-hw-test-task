@@ -31,11 +31,14 @@ const CamperCard = ({ camper }) => {
     if (camper.transmission === "automatic") {
       badges.push({ icon: <Cog size={20} />, text: "Automatic" });
     }
-    if (camper.engine) {
-      badges.push({
-        icon: <Fuel size={20} />,
-        text: camper.engine.charAt(0).toUpperCase() + camper.engine.slice(1),
-      });
+    if (camper.engine === "petrol") {
+      badges.push({ icon: <Fuel size={20} />, text: "Petrol" });
+    }
+    if (camper.engine === "diesel") {
+      badges.push({ icon: <Fuel size={20} />, text: "Diesel" });
+    }
+    if (camper.engine === "hybrid") {
+      badges.push({ icon: <Fuel size={20} />, text: "Hybrid" });
     }
     if (camper.AC) {
       badges.push({ icon: <Wind size={20} />, text: "AC" });

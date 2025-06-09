@@ -1,16 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  MapPin,
-  Wind,
-  Grid3x3,
-  Tv,
-  Coffee,
-  Droplets,
-  Truck,
-  Bus,
-  Home,
-} from "lucide-react";
+import { MapPin } from "lucide-react";
+import Icon from "./Icon";
 import {
   setLocation,
   setBodyType,
@@ -26,28 +17,38 @@ const FilterPanel = () => {
   );
 
   const vehicleEquipment = [
-    { key: "AC", label: "AC", icon: <Wind size={32} /> },
-    { key: "transmission", label: "Automatic", icon: <Grid3x3 size={32} /> },
-    { key: "kitchen", label: "Kitchen", icon: <Coffee size={32} /> },
-    { key: "TV", label: "TV", icon: <Tv size={32} /> },
-    { key: "bathroom", label: "Bathroom", icon: <Droplets size={32} /> },
+    { key: "AC", label: "AC", icon: <Icon name="ac" size={32} /> },
+    {
+      key: "transmission",
+      label: "Automatic",
+      icon: <Icon name="automatic" size={32} />,
+    },
+    {
+      key: "kitchen",
+      label: "Kitchen",
+      icon: <Icon name="kitchen" size={32} />,
+    },
+    { key: "TV", label: "TV", icon: <Icon name="tv" size={32} /> },
+    {
+      key: "bathroom",
+      label: "Bathroom",
+      icon: <Icon name="bathroom" size={32} />,
+    },
   ];
 
   const vehicleTypes = [
-    { key: "panelTruck", label: "Van", icon: <Truck size={32} /> },
+    { key: "panelTruck", label: "Van", icon: <Icon name="van" size={32} /> },
     {
       key: "fullyIntegrated",
       label: "Fully Integrated",
-      icon: <Bus size={32} />,
+      icon: <Icon name="integrated" size={32} />,
     },
-    { key: "alcove", label: "Alcove", icon: <Home size={32} /> },
+    { key: "alcove", label: "Alcove", icon: <Icon name="alcove" size={32} /> },
   ];
 
   const handleSearch = () => {
-    // Очищуємо попередні результати
     dispatch(clearCampers());
 
-    // Запускаємо новий пошук з поточними фільтрами
     const filterParams = {
       location,
       bodyType,
