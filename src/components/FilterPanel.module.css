@@ -83,3 +83,176 @@
     padding-bottom: 0.5rem;
   }
 }
+
+.panel {
+  width: 360px;
+  padding: 0;
+  background: transparent;
+  flex-shrink: 0;
+  height: fit-content;
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  color: var(--clr-text);
+  margin: 0 0 32px 0;
+}
+
+.sectionLabel {
+  display: block;
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.25;
+  color: rgba(16, 24, 40, 0.6);
+  margin-bottom: 12px;
+}
+
+.locationInput {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.locationInput svg {
+  position: absolute;
+  left: 18px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.input {
+  width: 100%;
+  padding: 18px 18px 18px 48px;
+  border: none;
+  border-radius: 12px;
+  background: var(--clr-badge);
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--clr-text);
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: rgba(16, 24, 40, 0.6);
+}
+
+.input:focus {
+  outline: 2px solid var(--clr-primary);
+  outline-offset: -2px;
+}
+
+.filtersSection {
+  border: 1px solid rgba(16, 24, 40, 0.2);
+  border-radius: 8px;
+  padding: 32px;
+  background: var(--clr-card);
+  margin-bottom: 64px;
+}
+
+.subsection {
+  margin-bottom: 32px;
+}
+
+.subsection:last-child {
+  margin-bottom: 0;
+}
+
+.filterGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.filterButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 17px 8px;
+  background: transparent;
+  border: 1px solid rgba(16, 24, 40, 0.2);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all var(--transition);
+  min-height: 96px;
+  box-sizing: border-box;
+}
+
+.filterButton span {
+  font-size: 16px;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+  color: var(--clr-text);
+  text-align: center;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.filterButton:hover {
+  border-color: var(--clr-primary);
+}
+
+.filterButton.active {
+  border-color: var(--clr-primary);
+  background: rgba(228, 72, 72, 0.1);
+}
+
+.searchButton {
+  width: 100%;
+  padding: 16px 60px;
+  background: var(--clr-primary);
+  color: #fff;
+  border: none;
+  border-radius: 200px;
+  font-weight: var(--font-weight-medium);
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.08px;
+  cursor: pointer;
+  transition: background-color var(--transition);
+  box-sizing: border-box;
+}
+
+.searchButton:hover {
+  background: var(--clr-primary-hover);
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(16, 24, 40, 0.1);
+  margin: 24px 0;
+}
+
+/* Responsive adjustments for smaller text in vehicle type buttons */
+.filterButton span:last-child {
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+/* Special styling for Van button to prevent text overflow */
+.filterButton:has(span:contains("Van")) span:last-child,
+.filterButton:has(span:contains("Alcove")) span:last-child {
+  font-size: 16px;
+}
+
+.filterButton:has(span:contains("Fully Integrated")) span:last-child {
+  font-size: 14px;
+}
+
+.shortText span:last-child {
+  font-size: 14px !important;
+  line-height: 1.2;
+}

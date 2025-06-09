@@ -2,55 +2,67 @@
 
 .wrapper {
   /* обмежуємо ширину всієї секції одним значенням */
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0.5rem;
-  box-sizing: border-box;
-}
-
-.cardsContainer {
-  position: relative;
-}
-
-.cardsLoader {
-  position: absolute;
-  inset: 0;
+  padding: 48px 64px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 64px;
+  align-items: flex-start;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Важливо для правильного обрізання тексту */
 }
 
 /* грід карток */
 .catalog {
-  display: grid;
-  /* мінімальна ширина колонки 260px, але при потребі заповнює вільний простір */
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  /* дуже щільні відступи */
-  row-gap: 0.75rem;
-  column-gap: 0.5rem;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
 /* кнопка Load More */
 .loadMore {
-  display: block;
-  width: 180px;
-  margin: 1.5rem auto;
-  padding: 0.6rem 1rem;
-  background: var(--clr-secondary);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius);
+  align-self: flex-start;
+  margin-top: 50px;
+  padding: 16px 32px;
+  background: transparent;
+  color: var(--clr-text);
+  border: 1px solid rgba(71, 84, 103, 0.2);
+  border-radius: 200px;
+  font-weight: var(--font-weight-medium);
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.08px;
   cursor: pointer;
-  transition: opacity var(--transition);
+  transition: all var(--transition);
+}
+.loadMore:hover {
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
 }
 .loadMore:disabled {
   opacity: 0.6;
-  cursor: default;
+  cursor: not-allowed;
 }
 
 .error {
   color: var(--clr-error);
   text-align: center;
-  margin-top: 0.5rem;
+  margin-top: 24px;
+  font-size: 16px;
+  padding: 16px;
+  background: rgba(228, 72, 72, 0.1);
+  border-radius: var(--radius);
+}
+
+.noResults {
+  text-align: center;
+  color: var(--clr-text-secondary);
+  font-size: 18px;
+  margin-top: 48px;
+  padding: 48px;
 }
