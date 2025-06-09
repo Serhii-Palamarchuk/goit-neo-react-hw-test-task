@@ -16,6 +16,7 @@ import {
   Tv,
 } from "lucide-react";
 import { toggleFavorite } from "../features/favorites/favoritesSlice";
+import Icon from "./Icon";
 import styles from "./CamperCard.module.css";
 
 const CamperCard = ({ camper }) => {
@@ -28,31 +29,48 @@ const CamperCard = ({ camper }) => {
 
   const getBadges = () => {
     const badges = [];
+
     if (camper.transmission === "automatic") {
-      badges.push({ icon: <Cog size={20} />, text: "Automatic" });
+      badges.push({
+        icon: <Icon name="automatic" size={20} />,
+        text: "Automatic",
+      });
     }
     if (camper.engine === "petrol") {
-      badges.push({ icon: <Fuel size={20} />, text: "Petrol" });
+      badges.push({ icon: <Icon name="petrol" size={20} />, text: "Petrol" });
     }
     if (camper.engine === "diesel") {
-      badges.push({ icon: <Fuel size={20} />, text: "Diesel" });
-    }
-    if (camper.engine === "hybrid") {
-      badges.push({ icon: <Fuel size={20} />, text: "Hybrid" });
+      badges.push({ icon: <Icon name="diesel" size={20} />, text: "Diesel" });
     }
     if (camper.AC) {
-      badges.push({ icon: <Wind size={20} />, text: "AC" });
+      badges.push({ icon: <Icon name="ac" size={20} />, text: "AC" });
     }
     if (camper.bathroom) {
-      badges.push({ icon: <Droplets size={20} />, text: "Bathroom" });
+      badges.push({
+        icon: <Icon name="bathroom" size={20} />,
+        text: "Bathroom",
+      });
     }
     if (camper.kitchen) {
-      badges.push({ icon: <Coffee size={20} />, text: "Kitchen" });
+      badges.push({ icon: <Icon name="kitchen" size={20} />, text: "Kitchen" });
     }
     if (camper.TV) {
-      badges.push({ icon: <Tv size={20} />, text: "TV" });
+      badges.push({ icon: <Icon name="tv" size={20} />, text: "TV" });
     }
-    return badges.slice(0, 3); // Show only first 3 badges
+    if (camper.form === "van") {
+      badges.push({ icon: <Icon name="van" size={20} />, text: "Van" });
+    }
+    if (camper.form === "fullyIntegrated") {
+      badges.push({
+        icon: <Icon name="integrated" size={20} />,
+        text: "Fully Integrated",
+      });
+    }
+    if (camper.form === "alcove") {
+      badges.push({ icon: <Icon name="alcove" size={20} />, text: "Alcove" });
+    }
+
+    return badges.slice(0, 3);
   };
 
   return (
