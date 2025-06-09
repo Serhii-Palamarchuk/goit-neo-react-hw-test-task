@@ -9,15 +9,16 @@ import styles from "./CamperDetailPage.module.css";
 const CamperDetailPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { detail, detailStatus, detailError } = useSelector((s) => s.campers);
+  // Змінюємо detail на currentCamper згідно з campersSlice
+  const { currentCamper, loading, error } = useSelector((s) => s.campers);
 
   useEffect(() => {
     dispatch(fetchCamperById(id));
   }, [dispatch, id]);
 
-  if (detailStatus === "loading") return <p>Loading details…</p>;
-  if (detailStatus === "failed") return <p>Error: {detailError}</p>;
-  if (!detail) return null;
+  if (loading) return <p>Loading details…</p>;
+  if (error) return <p>Error: {error}</p>;
+  if (!currentCamper) return null;
 
   const {
     name,
@@ -42,7 +43,7 @@ const CamperDetailPage = () => {
     tank,
     consumption,
     price,
-  } = detail;
+  } = currentCamper;
 
   return (
     <div className={styles.page}>
