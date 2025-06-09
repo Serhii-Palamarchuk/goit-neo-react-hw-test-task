@@ -18,11 +18,13 @@ const CatalogPage = () => {
 
   const filters = useSelector((state) => state.filters);
 
+  // Завантажуємо дані при першому завантаженні сторінки
   useEffect(() => {
-    // Очищуємо попередні результати перед новим пошуком
+    // Очищуємо попередні результати
     dispatch(clearCampers());
+    // Завантажуємо початкові дані
     dispatch(fetchCampers({ ...filters, page: 1 }));
-  }, [dispatch, filters]);
+  }, []); // Залежність тільки від dispatch, щоб завантажувати лише один раз
 
   const handleLoadMore = () => {
     if (!loading && hasMore) {

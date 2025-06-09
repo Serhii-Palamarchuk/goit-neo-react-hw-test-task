@@ -8,7 +8,7 @@
 
 /* Location Section */
 .locationSection {
-  margin-bottom: 32px;
+  margin-bottom: 24px; /* було 32px */
 }
 
 .label {
@@ -16,7 +16,7 @@
   font-size: 16px;
   font-weight: 600;
   color: rgba(16, 24, 40, 0.6);
-  margin-bottom: 12px;
+  margin-bottom: 8px; /* було 12px */
 }
 
 .inputWrapper {
@@ -36,8 +36,8 @@
 
 .locationInput {
   width: 100%;
-  height: 56px;
-  padding: 18px 18px 18px 48px;
+  height: 48px; /* було 56px */
+  padding: 14px 14px 14px 44px; /* зменшено padding */
   background: #f2f4f7;
   border: none;
   border-radius: 12px;
@@ -59,19 +59,19 @@
   background: #ffffff;
   border: 1px solid rgba(16, 24, 40, 0.2);
   border-radius: 8px;
-  padding: 32px;
-  margin-bottom: 64px;
+  padding: 24px; /* було 32px */
+  margin-bottom: 40px; /* було 64px */
 }
 
 .filtersTitle {
   font-size: 20px;
   font-weight: 600;
   color: #101828;
-  margin: 0 0 32px 0;
+  margin: 0 0 24px 0; /* було 32px */
 }
 
 .filterSection {
-  margin-bottom: 32px;
+  margin-bottom: 24px; /* було 32px */
 }
 
 .filterSection:last-child {
@@ -82,7 +82,7 @@
   font-size: 16px;
   font-weight: 600;
   color: rgba(16, 24, 40, 0.6);
-  margin: 0 0 24px 0;
+  margin: 0 0 16px 0; /* було 24px */
 }
 
 .divider {
@@ -90,13 +90,13 @@
   height: 1px;
   background: rgba(16, 24, 40, 0.1);
   border: none;
-  margin: 0 0 24px 0;
+  margin: 0 0 16px 0; /* було 24px */
 }
 
 .filterGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 10px; /* було 12px */
 }
 
 .filterBtn {
@@ -104,9 +104,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  height: 96px;
-  padding: 17px 8px;
+  gap: 6px; /* було 8px */
+  height: 80px; /* було 96px */
+  padding: 12px 6px; /* зменшено padding */
   background: transparent;
   border: 1px solid rgba(16, 24, 40, 0.2);
   border-radius: 12px;
@@ -116,16 +116,16 @@
 }
 
 .filterBtn span {
-  font-size: 16px;
+  font-size: 15px; /* було 16px */
   font-weight: 500;
   color: #101828;
   text-align: center;
-  line-height: 1.25;
+  line-height: 1.2; /* було 1.25 */
 }
 
 .smallText {
-  font-size: 14px !important;
-  line-height: 1.2 !important;
+  font-size: 13px !important; /* було 14px */
+  line-height: 1.1 !important; /* було 1.2 */
 }
 
 .filterBtn:hover {
@@ -140,8 +140,8 @@
 /* Search Button */
 .searchBtn {
   width: 100%;
-  height: 56px;
-  padding: 16px 60px;
+  height: 48px; /* було 56px */
+  padding: 14px 50px; /* зменшено padding */
   background: #e44848;
   color: #ffffff;
   border: none;
@@ -150,10 +150,27 @@
   font-weight: 500;
   letter-spacing: -0.08px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.1s ease;
   box-sizing: border-box;
 }
 
 .searchBtn:hover {
   background: #d84343;
+}
+
+.searchBtn:active {
+  background: #c73e3e;
+  transform: translateY(1px);
+}
+
+.searchBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  opacity: 0.6;
+}
+
+.searchBtn:focus {
+  outline: 2px solid #e44848;
+  outline-offset: 2px;
 }

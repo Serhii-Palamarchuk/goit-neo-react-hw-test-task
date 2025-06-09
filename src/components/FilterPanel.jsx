@@ -16,6 +16,7 @@ import {
   setBodyType,
   toggleFeature,
 } from "../features/filters/filtersSlice";
+import { fetchCampers, clearCampers } from "../features/campers/campersSlice";
 import styles from "./FilterPanel.module.css";
 
 const FilterPanel = () => {
@@ -42,6 +43,21 @@ const FilterPanel = () => {
     { key: "alcove", label: "Alcove", icon: <Home size={32} /> },
   ];
 
+  const handleSearch = () => {
+    // Очищуємо попередні результати
+    dispatch(clearCampers());
+
+    // Запускаємо новий пошук з поточними фільтрами
+    const filterParams = {
+      location,
+      bodyType,
+      features,
+      page: 1,
+    };
+
+    dispatch(fetchCampers(filterParams));
+  };
+
   return (
     <div className={styles.panel}>
       {/* Location Section */}
@@ -55,6 +71,11 @@ const FilterPanel = () => {
             value={location}
             onChange={(e) => dispatch(setLocation(e.target.value))}
             className={styles.locationInput}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch();
+              }
+            }}
           />
         </div>
       </div>
@@ -115,7 +136,9 @@ const FilterPanel = () => {
       </div>
 
       {/* Search Button */}
-      <button className={styles.searchBtn}>Search</button>
+      <button className={styles.searchBtn} onClick={handleSearch} type="button">
+        Search
+      </button>
     </div>
   );
 };
