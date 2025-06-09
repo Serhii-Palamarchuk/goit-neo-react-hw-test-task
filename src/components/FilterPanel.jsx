@@ -1,5 +1,3 @@
-// src/components/FilterPanel.jsx
-
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -40,39 +38,41 @@ const FilterPanel = () => {
       key: "fullyIntegrated",
       label: "Fully Integrated",
       icon: <Bus size={32} />,
-      shortLabel: true,
     },
     { key: "alcove", label: "Alcove", icon: <Home size={32} /> },
   ];
 
   return (
     <div className={styles.panel}>
-      <div className={styles.section}>
-        <label className={styles.sectionLabel}>Location</label>
-        <div className={styles.locationInput}>
-          <MapPin size={20} color="#6c717b" />
+      {/* Location Section */}
+      <div className={styles.locationSection}>
+        <label className={styles.label}>Location</label>
+        <div className={styles.inputWrapper}>
+          <MapPin size={20} className={styles.inputIcon} />
           <input
             type="text"
             placeholder="City"
             value={location}
             onChange={(e) => dispatch(setLocation(e.target.value))}
-            className={styles.input}
+            className={styles.locationInput}
           />
         </div>
       </div>
 
-      <div className={styles.filtersSection}>
-        <h3 className={styles.sectionTitle}>Filters</h3>
+      {/* Filters Section */}
+      <div className={styles.filtersContainer}>
+        <h3 className={styles.filtersTitle}>Filters</h3>
 
-        <div className={styles.subsection}>
-          <label className={styles.sectionLabel}>Vehicle equipment</label>
-          <div className={styles.divider}></div>
+        {/* Vehicle Equipment */}
+        <div className={styles.filterSection}>
+          <h4 className={styles.filterLabel}>Vehicle equipment</h4>
+          <hr className={styles.divider} />
           <div className={styles.filterGrid}>
             {vehicleEquipment.map((item) => (
               <button
                 key={item.key}
                 type="button"
-                className={`${styles.filterButton} ${
+                className={`${styles.filterBtn} ${
                   features.includes(item.key) ? styles.active : ""
                 }`}
                 onClick={() => dispatch(toggleFeature(item.key))}
@@ -84,23 +84,28 @@ const FilterPanel = () => {
           </div>
         </div>
 
-        <div className={styles.subsection}>
-          <label className={styles.sectionLabel}>Vehicle type</label>
-          <div className={styles.divider}></div>
+        {/* Vehicle Type */}
+        <div className={styles.filterSection}>
+          <h4 className={styles.filterLabel}>Vehicle type</h4>
+          <hr className={styles.divider} />
           <div className={styles.filterGrid}>
             {vehicleTypes.map((type) => (
               <button
                 key={type.key}
                 type="button"
-                className={`${styles.filterButton} ${
+                className={`${styles.filterBtn} ${
                   bodyType === type.key ? styles.active : ""
-                } ${type.shortLabel ? styles.shortText : ""}`}
+                }`}
                 onClick={() =>
                   dispatch(setBodyType(type.key === bodyType ? "" : type.key))
                 }
               >
                 {type.icon}
-                <span style={{ fontSize: type.shortLabel ? "14px" : "16px" }}>
+                <span
+                  className={
+                    type.key === "fullyIntegrated" ? styles.smallText : ""
+                  }
+                >
                   {type.label}
                 </span>
               </button>
@@ -109,7 +114,8 @@ const FilterPanel = () => {
         </div>
       </div>
 
-      <button className={styles.searchButton}>Search</button>
+      {/* Search Button */}
+      <button className={styles.searchBtn}>Search</button>
     </div>
   );
 };
