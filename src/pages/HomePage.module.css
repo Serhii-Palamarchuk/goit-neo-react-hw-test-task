@@ -51,13 +51,13 @@
 }
 
 .title {
-  font-size: 56px; /* Збільшено розмір */
+  font-size: 48px; /* Зменшено з 56px для поміщення в один рядок */
   font-weight: 600;
-  line-height: 1.1; /* Зменшено висоту рядка */
+  line-height: 1.1;
   margin: 0 0 16px 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   white-space: nowrap; /* Запобігає переносу рядків */
-  letter-spacing: -0.02em; /* Трохи зменшено відстань між літерами */
+  letter-spacing: -0.03em; /* Збільшено стиснення */
 }
 
 .subtitle {
