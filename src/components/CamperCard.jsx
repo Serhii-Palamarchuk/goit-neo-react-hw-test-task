@@ -21,7 +21,8 @@ import styles from "./CamperCard.module.css";
 
 const CamperCard = ({ camper }) => {
   const dispatch = useDispatch();
-  const isFavorite = useSelector((s) => s.favorites.includes(camper.id));
+  const favorites = useSelector((s) => s.favorites?.items || []);
+  const isFavorite = favorites.includes(camper.id);
 
   const formatPrice = (price) => {
     return `€${price.toFixed(2)}`;

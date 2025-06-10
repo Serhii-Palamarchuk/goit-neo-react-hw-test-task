@@ -23,12 +23,22 @@ const CamperDetailPage = () => {
   if (error) return <div className={styles.error}>Error: {error}</div>;
   if (!currentCamper) return null;
 
-  const isFavorite = favorites.includes(currentCamper.id);
+  // Додайте перевірку перед використанням
+  const isFavorite =
+    currentCamper && currentCamper.id
+      ? favorites.includes(currentCamper.id)
+      : false;
   const averageRating = currentCamper.rating || 0;
   const reviewsCount = currentCamper.reviews?.length || 0;
 
   const handleFavoriteToggle = () => {
-    dispatch(toggleFavorite(currentCamper.id));
+    if (currentCamper && currentCamper.id) {
+      console.log("Current camper ID:", currentCamper.id);
+      console.log("Current favorites:", favorites);
+      dispatch(toggleFavorite(currentCamper.id));
+    } else {
+      console.error("No camper ID available");
+    }
   };
 
   const getBadges = () => {
