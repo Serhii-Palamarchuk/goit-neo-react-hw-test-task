@@ -1,12 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./HomePage.module.css";
-import Banner from "../components/Banner";
 
 const HomePage = () => {
   return (
     <div className={styles.homePage}>
-      <Banner />
       <div className={styles.hero}>
         <div className={styles.heroBackground}>
           <img
