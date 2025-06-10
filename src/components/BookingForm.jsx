@@ -2,79 +2,85 @@ import React, { useState } from "react";
 import styles from "./BookingForm.module.css";
 
 const BookingForm = ({ camperId }) => {
-  const [form, setForm] = useState({
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
-    startDate: "",
-    endDate: "",
+    bookingDate: "",
+    comment: "",
   });
-  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((f) => ({ ...f, [name]: value }));
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    // Тут міг би бути реальний POST-запит, поки що симулюємо
-    setTimeout(() => {
-      setLoading(false);
-      alert("✅ Your booking was successful!");
-      setForm({ name: "", email: "", startDate: "", endDate: "" });
-    }, 800);
+    console.log("Booking for camper:", camperId, formData);
+    // Тут буде логіка відправки форми
+    alert("Booking request sent!");
+    setFormData({
+      name: "",
+      email: "",
+      bookingDate: "",
+      comment: "",
+    });
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <h3>Book this camper</h3>
+    <div className={styles.bookingForm}>
+      <h3 className={styles.title}>Book your campervan now</h3>
+      <p className={styles.subtitle}>
+        Stay connected! We are always ready to help you.
+      </p>
 
-      <input
-        name="name"
-        type="text"
-        placeholder="Your name"
-        required
-        value={form.name}
-        onChange={handleChange}
-      />
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Name*"
+          value={formData.name}
+          onChange={handleChange}
+          className={styles.input}
+          required
+        />
 
-      <input
-        name="email"
-        type="email"
-        placeholder="Your email"
-        required
-        value={form.email}
-        onChange={handleChange}
-      />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email*"
+          value={formData.email}
+          onChange={handleChange}
+          className={styles.input}
+          required
+        />
 
-      <div className={styles.dates}>
-        <label>
-          From
-          <input
-            name="startDate"
-            type="date"
-            required
-            value={form.startDate}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          To
-          <input
-            name="endDate"
-            type="date"
-            required
-            value={form.endDate}
-            onChange={handleChange}
-          />
-        </label>
-      </div>
+        <input
+          type="date"
+          name="bookingDate"
+          placeholder="Booking date*"
+          value={formData.bookingDate}
+          onChange={handleChange}
+          className={styles.input}
+          required
+        />
 
-      <button type="submit" disabled={loading}>
-        {loading ? "Booking…" : "Book now"}
-      </button>
-    </form>
+        <textarea
+          name="comment"
+          placeholder="Comment"
+          value={formData.comment}
+          onChange={handleChange}
+          rows="4"
+          className={styles.textarea}
+        />
+
+        <button type="submit" className={styles.submitBtn}>
+          Send
+        </button>
+      </form>
+    </div>
   );
 };
 
