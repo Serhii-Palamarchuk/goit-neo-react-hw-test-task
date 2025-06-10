@@ -1,57 +1,121 @@
-.nav {
-  background: var(--clr-card);
-  padding: 0 20px;
-  box-shadow: var(--shadow);
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid #dadde1;
+  padding: 0;
   position: sticky;
   top: 0;
   z-index: 100;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .container {
   max-width: 1440px;
   margin: 0 auto;
+  padding: 24px 64px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: var(--nav-height);
 }
 
 .logo {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--primary-color, #101828);
+  text-decoration: none;
   display: flex;
   align-items: center;
-  font-size: 20px;
-  font-weight: var(--font-weight-semibold);
-}
-
-.logoText {
-  color: var(--clr-text);
+  font-family: inherit;
 }
 
 .logoAccent {
-  color: var(--clr-primary);
+  color: #6c717b; /* Trucks сірим */
 }
 
-.list {
+.nav {
   display: flex;
-  gap: 32px;
+  gap: 60px;
   align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); /* Центрування навігації */
 }
 
-.link {
-  color: var(--clr-text);
-  font-weight: var(--font-weight-medium);
+.navLink {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #101828;
   text-decoration: none;
-  padding: 8px 16px;
-  border-radius: var(--radius-sm);
-  transition: all var(--transition);
+  padding: 8px 0;
+  position: relative;
+  transition: color 0.2s ease;
+  font-family: inherit;
 }
 
-.link:hover {
-  color: var(--clr-primary);
-  background-color: rgba(228, 72, 72, 0.08);
+.navLink:hover {
+  color: #e44848;
 }
 
-.active {
-  color: var(--clr-primary);
-  background-color: rgba(228, 72, 72, 0.08);
+.navLink.active {
+  color: #e44848;
+  font-weight: 600;
+}
+
+.navLink.active::after {
+  content: "";
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 4px;
+  background: #e44848;
+  border-radius: 2px;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .container {
+    padding: 20px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px 24px;
+    position: relative;
+  }
+
+  .nav {
+    position: static;
+    transform: none;
+    gap: 40px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .navLink {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 12px 16px;
+  }
+
+  .nav {
+    gap: 24px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .navLink {
+    font-size: 14px;
+  }
 }
