@@ -23,7 +23,6 @@ const CamperDetailPage = () => {
   if (error) return <div className={styles.error}>Error: {error}</div>;
   if (!currentCamper) return null;
 
-  // Додайте перевірку перед використанням
   const isFavorite =
     currentCamper && currentCamper.id
       ? favorites.includes(currentCamper.id)
@@ -100,7 +99,6 @@ const CamperDetailPage = () => {
 
   return (
     <div className={styles.container}>
-      {/* Header */}
       <div className={styles.header}>
         <h1 className={styles.title}>{currentCamper.name}</h1>
 
@@ -117,20 +115,20 @@ const CamperDetailPage = () => {
               <span>{currentCamper.location}</span>
             </div>
           </div>
+        </div>
 
-          <div className={styles.priceSection}>
-            <span className={styles.price}>
-              €{currentCamper.price?.toFixed(2)}
-            </span>
-            <button
-              className={`${styles.favoriteBtn} ${
-                isFavorite ? styles.active : ""
-              }`}
-              onClick={handleFavoriteToggle}
-            >
-              <Heart size={24} fill={isFavorite ? "#e44848" : "none"} />
-            </button>
-          </div>
+        <div className={styles.priceAndFav}>
+          <span className={styles.price}>
+            €{currentCamper.price?.toFixed(2)}
+          </span>
+          <button
+            className={`${styles.favoriteBtn} ${
+              isFavorite ? styles.active : ""
+            }`}
+            onClick={handleFavoriteToggle}
+          >
+            <Heart size={24} fill={isFavorite ? "#e44848" : "none"} />
+          </button>
         </div>
       </div>
 
